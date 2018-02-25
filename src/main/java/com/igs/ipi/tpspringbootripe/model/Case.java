@@ -1,12 +1,14 @@
 package com.igs.ipi.tpspringbootripe.model;
 
 public enum Case {
-    CASE;
+    CASEP1, CASEP2, CASEVIDE;
     
 	public String getCase() {
-		if(this == CASE)
-			return "case";
+		if(this == CASEP1)
+			return "player1";
+		else if(this == CASEP2)
+			return "player2";
 		else
-			return null;
+			return "vide";
 	}
 }
