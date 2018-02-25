@@ -5,10 +5,10 @@ public enum Case {
     
 	public String getCase() {
 		if(this == CASEP1)
-			return "player1";
+			return "pieceP1.png";
 		else if(this == CASEP2)
-			return "player2";
+			return "pieceP2.png";
 		else
-			return "vide";
+			return null;
 	}
 }

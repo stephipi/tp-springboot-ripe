@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import com.igs.ipi.tpspringbootripe.model.GameModel;
 
 @Component
-@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class PartieEnCoursService {
+//@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class PartieEnCours {
 	private GameModel gameModel;
 	public GameModel getGameModel() {
 	        return gameModel;

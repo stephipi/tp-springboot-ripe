@@ -9,6 +9,7 @@ public class GameModel {
     
 	private String nom1;
     private String nom2;
+    private boolean isPlayer1;
     
 	public String getNom1() {
 		return nom1;
@@ -40,15 +41,29 @@ public class GameModel {
 				cases[i][j] = Case.CASEVIDE;
 			}
 		}
+		isPlayer1 = true;
     }
 	
 	public void add(Integer indexColonne) {
 	    for (int indexLigne = cases.length - 1; indexLigne >= 0; indexLigne--) {
-	        if (cases[indexLigne][indexColonne-1] == Case.CASEVIDE) {
-	        	cases[indexLigne][indexColonne-1] = Case.CASEP1;
+	        if (cases[indexLigne][indexColonne] == Case.CASEVIDE) {
+	        	Case playedCase = Case.CASEP1;
+	        	if (!isPlayer1)
+	        		playedCase = Case.CASEP2;
+	        	cases[indexLigne][indexColonne] = playedCase;
+
+                isPlayer1 = !isPlayer1;
 	            return;
 	        }
 	    }
 	    throw new IllegalArgumentException("Aucune place disponible pour un jeton en index " + indexColonne);
+	}
+	
+	public boolean isTourJoueur1() {
+		return isPlayer1;
+	}
+
+	public void setTourJoueur1(boolean tourJoueur1) {
+		this.isPlayer1 = tourJoueur1;
 	}
 }
