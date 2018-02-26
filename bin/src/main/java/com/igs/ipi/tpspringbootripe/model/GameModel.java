@@ -9,7 +9,7 @@ public class GameModel {
     
     public static final int NB_A_ALIGNER = 4;
     
-    private Case[][] cases = new Case[LIGNE][COLONNE];
+    private Jeton[][] jetons = new Jeton[LIGNE][COLONNE];
     
 	private String nom1;
     private String nom2;
@@ -32,18 +32,18 @@ public class GameModel {
 		this.nom2 = nom2;
 	}
 
-    public Case[][] getCases() {
-		return cases;
+    public Jeton[][] getCases() {
+		return jetons;
 	}
 	
-	public void setCases(Case[][] cases) {
-		this.cases = cases;
+	public void setCases(Jeton[][] cases) {
+		this.jetons = cases;
 	}
 	
 	public GameModel() {
-		for (int i = 0; i < cases.length; i++) {
-			for (int j = 0; j < cases[i].length; j++) {
-				cases[i][j] = Case.CASEVIDE;
+		for (int i = 0; i < jetons.length; i++) {
+			for (int j = 0; j < jetons[i].length; j++) {
+				jetons[i][j] = Jeton.CASEVIDE;
 			}
 		}
 		isPlayer1 = true;
@@ -56,11 +56,11 @@ public class GameModel {
 		}
 		
 		//ajoute le jeton dans la grille de jeu
-	    for (int indexLigne = cases.length - 1; indexLigne >= 0; indexLigne--) {
-	        if (cases[indexLigne][indexColonne] == Case.CASEVIDE) {
-	        	cases[indexLigne][indexColonne] = Case.CASEP1;
+	    for (int indexLigne = jetons.length - 1; indexLigne >= 0; indexLigne--) {
+	        if (jetons[indexLigne][indexColonne] == Jeton.CASEVIDE) {
+	        	jetons[indexLigne][indexColonne] = Jeton.JETONP1;
 	        	if (!isPlayer1)
-	        		cases[indexLigne][indexColonne] = Case.CASEP2;
+	        		jetons[indexLigne][indexColonne] = Jeton.JETONP2;
 	        	
 
 	        	 boolean coupGagnant = isCoupGagnant(indexColonne, indexLigne);
@@ -80,13 +80,13 @@ public class GameModel {
 	}
 	
 	private boolean isCoupGagnant(int x, int y) {
-		 Case caseCourante = cases[y][x];
+		 Jeton caseCourante = jetons[y][x];
 		 Coordonnes init = new Coordonnes(x, y);
 		 List<List<Coordonnes>> alignementsPossibles = init.getAlignementsPossibles(NB_A_ALIGNER, COLONNE, LIGNE);
 	for (List<Coordonnes> alignement : alignementsPossibles) {
 		int nbAlignes = 0;
 		for (Coordonnes c : alignement) {
-			if (cases[c.y][c.x] == caseCourante) {
+			if (jetons[c.y][c.x] == caseCourante) {
 				nbAlignes++;
 			} else {
 				nbAlignes = 0;

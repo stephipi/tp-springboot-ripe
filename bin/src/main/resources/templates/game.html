@@ -6,7 +6,17 @@
 <body>
 <h1>TP PUISSANCE 4</h1>
 <h2><a href="http://localhost:8090/game/new">REJOUER</a></h2>
-<h3>JOUEUR 1 {{game.nom1}} VS JOUEUR 2 {{game.nom2}}</h3>
+<h3>
+{{#game.isPlayer1}}
+<img src="http://localhost:8090/pieceP1.png" style="width:22px; height: 22px" align="top"/>
+{{/game.isPlayer1}}
+JOUEUR 1 {{game.nom1}}</h3>
+<h3>VS</h3>
+<h3>
+{{^game.isPlayer1}}
+<img src="http://localhost:8090/pieceP2.png" style="width:22px; height: 22px" align="top"/>
+{{/game.isPlayer1}}
+JOUEUR 2 {{game.nom2}}</h3>
 <table border="1">
 	{{#game.cases}}
 	<tr>
